@@ -31,7 +31,7 @@ import java.util.Map;
 public class login extends AppCompatActivity {
 
     EditText etdni, etClave;
-    Button btAcceder, btRegistrase
+    Button btAcceder, btRegistrase;
     String dni, clave;
 
     final String URL = "http://192.168.1.15/appveterinaria/controllers/clientes.php";
@@ -46,6 +46,13 @@ public class login extends AppCompatActivity {
             public void onClick(View view) {
 
                 iniciarSesion();
+            }
+        });
+
+        btRegistrase.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                abrirRegistro();
             }
         });
 
@@ -96,6 +103,10 @@ public class login extends AppCompatActivity {
         startActivity(intent);
     }
 
+    private  void abrirRegistro(){
+        Intent intent = new Intent(getApplicationContext(), Registrar.class);
+        startActivity(intent);
+    }
 
     private void loadUI(){
         etdni = findViewById(R.id.etDNI);

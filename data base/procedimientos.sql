@@ -60,3 +60,21 @@ BEGIN
 	FROM clientes
 	WHERE dni = _dni;
 END $$
+
+-- -------------------------------------------------------------------------------------------------------------------------
+DELIMITER $$
+CREATE PROCEDURE spu_registrar_cliente
+(
+	IN _apellidos 	VARCHAR(50),
+	IN _nombres	VARCHAR(50),
+	IN _dni 	CHAR(8),
+	IN _claveacceso VARCHAR(200) 
+)
+BEGIN
+	INSERT INTO clientes (apellidos, nombres, dni, claveacceso) VALUES 
+	(_apellidos,_nombres,_dni,_claveacceso);
+END $$
+
+CALL spu_registrar_cliente("Suarez Matias", "Karen", "47671169", "123456");
+
+

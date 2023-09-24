@@ -28,5 +28,22 @@ class Cliente extends Conexion{
       die($e->getCode());
     } 
   }
-
+  
+  public function registrar($data = []){
+    try{
+      $consulta =$this->conexion->prepare("CALL spu_registrar_cliente(?,?,?,?)");
+      $consulta->execute(
+        array(
+          $data["apellidos"],
+          $data["nombres"],
+          $data["dni"],
+          $data["claveAcceso"]
+        )
+      );
+      return $consulta->fetchAll(PDO::FETCH_ASSOC);
+    }
+    catch(Exception $e){
+      die($e->getCode());
+    } 
+  }
 }
