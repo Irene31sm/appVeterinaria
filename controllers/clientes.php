@@ -2,14 +2,14 @@
 
 require_once '../models/Clientes.php';
 
-if(isset($_POST['operacion'])){
+if(isset($_GET['operacion'])){
 
   $cliente = new Cliente();
 
-  switch($_POST['operacion']){
+  switch($_GET['operacion']){
     case 'inicioSesion':
       $parametros = [
-        "dni"         => $_POST['dni']
+        "dni"         => $_GET['dni']
     ];
       $respuesta = $cliente->inicioSesion($parametros);
       echo json_encode($respuesta);

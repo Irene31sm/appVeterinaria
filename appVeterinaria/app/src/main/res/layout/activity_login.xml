@@ -38,4 +38,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
+    <LinearLayout
+        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:text="¿No tiene ninguna cuenta?"
+            android:layout_width="221dp"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/btRegistrase"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Registrarse" />
+
+
+    </LinearLayout>
+
 </LinearLayout>
