@@ -93,12 +93,16 @@
                 android:layout_height="match_parent">
 
                 <RadioButton
-                    android:text="rbHembra"
+                    android:id="@+id/rbHembra"
+                    android:text="Hembra"
                     android:layout_width="match_parent"
+                    android:checked="true"
                     android:layout_height="wrap_content"/>
                 <RadioButton
-                    android:text="rbMacho"
+                    android:id="@+id/rbMacho"
+                    android:text="Macho"
                     android:layout_width="match_parent"
+                    android:checked="false"
                     android:layout_height="wrap_content"/>
             </RadioGroup>
 

@@ -57,16 +57,18 @@ public class login extends AppCompatActivity {
         });
 
     }
-    public void iniciarSesion(){
+    private void iniciarSesion(){
         dni = etdni.getText().toString().trim();
         clave = etClave.getText().toString().trim();
 
         Uri.Builder urlnueva = Uri.parse(URL).buildUpon();
         urlnueva.appendQueryParameter("operacion", "inicioSesion");
         urlnueva.appendQueryParameter("dni", dni);
+        urlnueva.appendQueryParameter("claveAcceso", clave);
 
         String URLN = urlnueva.build().toString();
-            JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, URLN, null, new Response.Listener<JSONArray>() {
+
+            /*JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, URLN, null, new Response.Listener<JSONArray>() {
                 @Override
                 public void onResponse(JSONArray response) {
                     if (response.length() > 0) {
@@ -95,8 +97,37 @@ public class login extends AppCompatActivity {
                 public void onErrorResponse(VolleyError error) {
                     Log.e("Error", error.toString());
                 }
-            });
-            Volley.newRequestQueue(this).add(jsonArrayRequest);
+            }); */
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, URLN, null,new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                if (response != null) {
+                    try {
+                        Log.e("REspuesta", response.toString());
+                        if (response.getBoolean("sesion")) {
+                            Toast.makeText(getApplicationContext(), "Iniciando sesión...", Toast.LENGTH_SHORT).show();
+                            idCliente = response.getInt("idcliente");
+                            abrirActivityPrincipal(idCliente);
+                        } else {
+                            Toast.makeText(getApplicationContext(), response.getString("mensaje"), Toast.LENGTH_SHORT).show();
+                            Log.e("Inicio de sesión", response.getString("mensaje"));
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    // La respuesta está vacía, maneja este caso adecuadamente
+                    Log.e("Error", "Respuesta vacía");
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("Error", error.toString());
+            }
+        });
+        Volley.newRequestQueue(this).add(jsonObjectRequest);
     }
 
     private void abrirActivityPrincipal(int idCliente){
