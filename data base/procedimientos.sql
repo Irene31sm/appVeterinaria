@@ -48,6 +48,21 @@ BEGIN
 	WHERE mascotas.idmascota = _idmascota;
 END $$
 
+-- -------------------------------------------------------------------------------------------------------------------------------
+DELIMITER $$
+CREATE PROCEDURE spu_lista_animales()
+BEGIN
+	SELECT *
+	FROM animales;
+END $$
+
+DELIMITER $$
+CREATE PROCEDURE spu_filtro_raza(IN _idanimal INT)
+BEGIN
+	SELECT *
+	FROM razas
+	WHERE idanimal = _idanimal;
+END $$
 -- ------------------------------------------------------------------------------------------------------------------------------
 
 DELIMITER $$

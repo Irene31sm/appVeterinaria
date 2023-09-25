@@ -33,7 +33,7 @@ public class login extends AppCompatActivity {
     EditText etdni, etClave;
     Button btAcceder, btRegistrase;
     String dni, clave;
-
+    int idCliente;
     final String URL = "http://192.168.1.15/appveterinaria/controllers/clientes.php";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,9 +74,10 @@ public class login extends AppCompatActivity {
                             // Analizar la respuesta JSON aquí
                             JSONObject jsonObject = response.getJSONObject(0);
                             String claveRespuesta = jsonObject.getString("claveacceso");
+                            idCliente = jsonObject.getInt("idcliente");
                             if(claveRespuesta.equals(clave)){
                                 Toast.makeText(getApplicationContext(),"has iniciado sesion",Toast.LENGTH_SHORT).show();
-                                abrirActivityPrincipal();
+                                abrirActivityPrincipal(idCliente);
                             }else{
                                 Toast.makeText(getApplicationContext(),"error en contraseña",Toast.LENGTH_SHORT).show();
                             }
@@ -98,8 +99,9 @@ public class login extends AppCompatActivity {
             Volley.newRequestQueue(this).add(jsonArrayRequest);
     }
 
-    private void abrirActivityPrincipal(){
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+    private void abrirActivityPrincipal(int idCliente){
+        Intent intent = new Intent(getApplicationContext(), Listar.class);
+        intent.putExtra("idcliente", idCliente);
         startActivity(intent);
     }
 
