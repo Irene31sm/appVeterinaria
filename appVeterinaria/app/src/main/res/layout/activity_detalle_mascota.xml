@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context=".DetalleMascota">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="119dp"
+        android:visibility="visible"
+        app:srcCompat="@drawable/cabezera" />
+
+    <TextView
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:textColor="#3F5C51"
+        android:text="Mascota: "
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/tvNombreMascota"
+        android:textAlignment="center"
+        android:text="Nombre mascota"
+        android:textSize="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:showDividers="middle">
+
+        <TextView
+            android:text="Animal: "
+            android:textColor="#3F5C51"
+            android:layout_marginTop="1dp"
+            android:layout_width="0dp"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tvTipoanimal"
+            android:text="tipo animal"
+            android:layout_width="0dp"
+            android:textSize="20dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:showDividers="middle">
+
+        <TextView
+            android:text="Raza: "
+            android:textColor="#3F5C51"
+            android:layout_marginTop="1dp"
+            android:layout_width="0dp"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tvRaza"
+            android:text="Raza mascota"
+            android:layout_width="0dp"
+            android:textSize="20dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:showDividers="middle">
+
+        <TextView
+            android:text="Color: "
+            android:textColor="#3F5C51"
+            android:layout_marginTop="1dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tvColor"
+            android:text="Color animal"
+            android:textSize="20dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:showDividers="middle">
+
+        <TextView
+            android:text="Género: "
+            android:textColor="#3F5C51"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:layout_marginTop="1dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tvGenero"
+            android:text="Genero animal"
+            android:textSize="20dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/ivImgMascota"
+        android:layout_width="match_parent"
+        android:layout_height="161dp" />
+
+
+
+
+</LinearLayout>

@@ -30,7 +30,7 @@ public class Registrar extends AppCompatActivity {
     Button btRegistrar;
     String apellidos, nombres, dni, clave;
     boolean inicioSesion = false;
-    final String URL = "http://192.168.1.15/appveterinaria/controllers/clientes.php";
+    final String URL = "http://192.168.1.28/appveterinaria/controllers/clientes.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
