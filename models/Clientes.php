@@ -9,20 +9,13 @@ class Cliente extends Conexion{
     $this->conexion = parent::getConexion();
   }
 
-  public function inicioSesion($data = []){
-    $respuesta = [
-      "status" => false,
-      "mensaje" => ""
-    ];
-
+  public function inicioSesion($dni){
     try{
       $consulta =$this->conexion->prepare("CALL spu_inicio_sesion(?)");
       $consulta->execute(
-        array(
-          $data["dni"]
-        )
+        array($dni)
       );
-      return $consulta->fetchAll(PDO::FETCH_ASSOC);
+      return $consulta->fetch(PDO::FETCH_ASSOC);
     }
     catch(Exception $e){
       die($e->getCode());
@@ -38,9 +31,7 @@ class Cliente extends Conexion{
           $data["nombres"],
           $data["dni"],
           $data["claveAcceso"]
-        )
-      );
-      return $consulta->fetchAll(PDO::FETCH_ASSOC);
+        ));
     }
     catch(Exception $e){
       die($e->getCode());

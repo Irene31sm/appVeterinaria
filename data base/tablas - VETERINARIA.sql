@@ -58,6 +58,12 @@ INSERT INTO clientes (apellidos, nombres, dni, claveacceso) VALUES
 ("Neyra Vilela", "Fabiola", "76364011", "123456"),
 ("Tasayco Pachas", "Kiara Yanina", "76364012", "123456");
 
+UPDATE clientes 
+SET claveacceso = "$2y$10$sQrYyt1KlqQWpt5FJzf5yOTbIKkp5FIlYHfQethCSTxI6ALifAq1q" 
+WHERE idcliente = 7
+
+
+
 INSERT INTO animales (nombreamimal) VALUES
 ("Perro"),
 ("Gato"),
@@ -94,7 +100,7 @@ SELECT mascotas.idmascota,clientes.nombres, clientes.apellidos, mascotas.nombre,
 FROM mascotas
 INNER JOIN clientes ON clientes.idcliente = mascotas.idcliente
 INNER JOIN razas ON razas.idraza = mascotas.idraza
-WHERE mascotas.idcliente = 2;
+WHERE mascotas.idcliente = 1;
 
 SELECT mascotas.idmascota,mascotas.nombre,animales.nombreamimal ,mascotas.color, mascotas.genero
 FROM mascotas
