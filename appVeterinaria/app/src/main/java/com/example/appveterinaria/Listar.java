@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -35,7 +36,7 @@ public class Listar extends AppCompatActivity {
     private List<Integer> dataID = new ArrayList<>();
     int idcliente;
     private CustomAdapter adapter;
-    final String URL = "http://192.168.1.15/appveterinaria/controllers/mascotas.php";
+    final String URL = "http://192.168.1.28/appveterinaria/controllers/mascotas.php";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,13 +49,24 @@ public class Listar extends AppCompatActivity {
             idcliente = parametros.getInt("idcliente");
             obtenerDatos(idcliente);
         }
-
+        lvMascotas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                abrirDetalle(dataID.get(position));
+            }
+        });
         btRegistrarMascota.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 abrirActivity(idcliente);
             }
         });
+    }
+    private void abrirDetalle(int idmascota){
+
+        Intent intent = new Intent(getApplicationContext(), DetalleMascota.class);
+        intent.putExtra("idmascota", idmascota);
+        startActivity(intent);
     }
     private void obtenerDatos(int idcliente){
         dataID.clear();

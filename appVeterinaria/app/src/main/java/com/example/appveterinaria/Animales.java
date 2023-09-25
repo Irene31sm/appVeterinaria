@@ -19,7 +19,7 @@ public class Animales {
 
     @Override
     public String toString() {
-        return text; // Esto determina qué se mostrará en el Spinner
+        return text;
     }
 
 

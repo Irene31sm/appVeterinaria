@@ -15,16 +15,17 @@ if(isset($_POST['operacion'])){
     ];
       echo json_encode($mascota->registrar($parametros));
       break;
-    case 'buscar':
-      $datos = $mascota->buscar($_POST["idmascota"]);
-      echo json_encode($datos);
-      break;
+    
   }
 }
 if(isset($_GET['operacion'])){
   switch($_GET['operacion']){
     case 'listar':
       $datos = $mascota->listarMascotasCliente($_GET["idcliente"]);
+      echo json_encode($datos);
+      break;
+    case 'buscar':
+      $datos = $mascota->buscar($_GET["idmascota"]);
       echo json_encode($datos);
       break;
   }

@@ -64,6 +64,7 @@ WHERE idcliente = 7
 
 
 
+
 INSERT INTO animales (nombreamimal) VALUES
 ("Perro"),
 ("Gato"),
@@ -102,8 +103,8 @@ INNER JOIN clientes ON clientes.idcliente = mascotas.idcliente
 INNER JOIN razas ON razas.idraza = mascotas.idraza
 WHERE mascotas.idcliente = 1;
 
-SELECT mascotas.idmascota,mascotas.nombre,animales.nombreamimal ,mascotas.color, mascotas.genero
+SELECT mascotas.idmascota,mascotas.nombre,animales.nombreamimal ,mascotas.color, mascotas.genero, mascotas.`fotografia`
 FROM mascotas
 INNER JOIN razas ON razas.idraza = mascotas.idraza
 INNER JOIN animales ON animales.idanimal = razas.idanimal
-WHERE mascotas.idmascota = 1;
+WHERE mascotas.idmascota = 4;
