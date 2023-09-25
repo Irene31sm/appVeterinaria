@@ -1,11 +1,8 @@
 <?php
 
 require_once '../models/Mascotas.php';
-
+$mascota = new Mascota();
 if(isset($_POST['operacion'])){
-
-  $mascota = new Mascota();
-
   switch($_POST['operacion']){
     case 'registrar':
       $parametros = [
@@ -22,8 +19,13 @@ if(isset($_POST['operacion'])){
       $datos = $mascota->buscar($_POST["idmascota"]);
       echo json_encode($datos);
       break;
+  }
+}
+if(isset($_GET['operacion'])){
+  switch($_GET['operacion']){
     case 'listar':
-      $datos = $mascota->listarMascotasCliente($_POST["idcliente"]);
+      $datos = $mascota->listarMascotasCliente($_GET["idcliente"]);
       echo json_encode($datos);
+      break;
   }
 }

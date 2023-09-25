@@ -5,6 +5,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -28,6 +29,7 @@ public class Registrar extends AppCompatActivity {
     EditText etApellidos, etNombres, etDNI, etClave1;
     Button btRegistrar;
     String apellidos, nombres, dni, clave;
+    boolean inicioSesion = false;
     final String URL = "http://192.168.1.15/appveterinaria/controllers/clientes.php";
 
     @Override
@@ -95,15 +97,18 @@ public class Registrar extends AppCompatActivity {
             public void onResponse(String response) {
                 //Comunicacion exitosa
                 if(response.equalsIgnoreCase("")){
-                    Toast.makeText(getApplicationContext(), "Guardado Correctamente", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Registradi Correctamente, inicie sesion", Toast.LENGTH_SHORT).show();
                     etApellidos.requestFocus();
+                    inicioSesion = true;
+                    if(inicioSesion){
+                        Intent intent = new Intent(getApplicationContext(), login.class);
+                        startActivity(intent);
+                    }
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                //No funciono la comunicacion con el webService
-                //error.printStackTrace();
                 Toast.makeText(getApplicationContext(),error.toString(),Toast.LENGTH_SHORT).show();
                 Log.d("Error comunicación", error.toString());
             }
@@ -124,6 +129,7 @@ public class Registrar extends AppCompatActivity {
         //Enviamos la solicitud al WS
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(request);
+
     }
     private void loadUI(){
         etApellidos = findViewById(R.id.etApellidos);
