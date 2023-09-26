@@ -95,7 +95,6 @@ public class Registrar extends AppCompatActivity {
         StringRequest request = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                //Comunicacion exitosa
                 if(response.equalsIgnoreCase("")){
                     Toast.makeText(getApplicationContext(), "Registradi Correctamente, inicie sesion", Toast.LENGTH_SHORT).show();
                     etApellidos.requestFocus();
@@ -126,9 +125,7 @@ public class Registrar extends AppCompatActivity {
                 return parametros;
             }
         };
-        //Enviamos la solicitud al WS
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(request);
+        Volley.newRequestQueue(this).add(request);
 
     }
     private void loadUI(){

@@ -68,36 +68,6 @@ public class login extends AppCompatActivity {
 
         String URLN = urlnueva.build().toString();
 
-            /*JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, URLN, null, new Response.Listener<JSONArray>() {
-                @Override
-                public void onResponse(JSONArray response) {
-                    if (response.length() > 0) {
-                        try {
-                            // Analizar la respuesta JSON aquí
-                            JSONObject jsonObject = response.getJSONObject(0);
-                            String claveRespuesta = jsonObject.getString("claveacceso");
-                            idCliente = jsonObject.getInt("idcliente");
-                            if(claveRespuesta.equals(clave)){
-                                Toast.makeText(getApplicationContext(),"has iniciado sesion",Toast.LENGTH_SHORT).show();
-                                abrirActivityPrincipal(idCliente);
-                            }else{
-                                Toast.makeText(getApplicationContext(),"error en contraseña",Toast.LENGTH_SHORT).show();
-                            }
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    } else {
-                        // La respuesta está vacía, maneja este caso adecuadamente
-                        Log.e("Error", "Respuesta vacía");
-                    }
-
-                }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    Log.e("Error", error.toString());
-                }
-            }); */
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, URLN, null,new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
