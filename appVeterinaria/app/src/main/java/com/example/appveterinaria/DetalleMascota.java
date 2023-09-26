@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -25,6 +26,7 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class DetalleMascota extends AppCompatActivity {
 
@@ -51,8 +53,7 @@ public class DetalleMascota extends AppCompatActivity {
         tvTipoanimal =  findViewById(R.id.tvTipoanimal);
         tvRaza =  findViewById(R.id.tvRaza);
         tvColor =  findViewById(R.id.tvColor);
-        tvColor =  findViewById(R.id.tvGenero);
-
+        tvGenero =  findViewById(R.id.tvGenero);
         ivImgMascota =  findViewById(R.id.ivImgMascota);
     }
 
@@ -66,13 +67,18 @@ public class DetalleMascota extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                 try {
+
                     Log.d("datos", response.getString("fotografia"));
                     tvNombreMascota.setText(response.getString("nombre"));
                     tvTipoanimal.setText(response.getString("nombreamimal"));
                     tvRaza.setText(response.getString("nombreRaza"));
                     tvColor.setText(response.getString("color"));
                     tvGenero.setText(response.getString("genero"));
-                    obtenerImagen(response.getString("fotografia"));
+                    fotografia = response.getString("fotografia");
+                    obtenerImagen(fotografia);
+
+
+
                 }catch (Exception e){
                     e.printStackTrace();
                 }
@@ -89,7 +95,7 @@ public class DetalleMascota extends AppCompatActivity {
     }
     private void obtenerImagen(String foto){
         String urlNueva = urlImagen+foto;
-        Log.e("Fotoooooo", urlNueva);
+        Toast.makeText(getApplicationContext(),foto, Toast.LENGTH_SHORT).show();
         ImageRequest imageRequest = new ImageRequest(urlNueva, new Response.Listener<Bitmap>() {
             @Override
             public void onResponse(Bitmap response) {
