@@ -50,8 +50,8 @@ public class RegistrarMascota extends AppCompatActivity {
     int idcliente, idRaza;
     String nombreMascota, color, genero;
 
-    final String URL = "http://192.168.1.28/appveterinaria/controllers/razas.php";
-    final String URL2 = "http://192.168.1.28/appveterinaria/controllers/mascotas.php";
+    final String URL = "http://192.168.59.25/appveterinaria/controllers/razas.php";
+    final String URL2 = "http://192.168.59.25/appveterinaria/controllers/mascotas.php";
 
     private ArrayList<Animales> animales = new ArrayList<>();
     private ArrayList<Razas> razas = new ArrayList<>();

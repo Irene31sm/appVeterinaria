@@ -34,8 +34,8 @@ public class DetalleMascota extends AppCompatActivity {
     ImageView ivImgMascota;
     String fotografia;
     int idmascota;
-    final String URL = "http://192.168.1.28/appveterinaria/controllers/mascotas.php";
-    final String urlImagen = "http://192.168.1.28/appveterinaria/imagenes/";
+    final String URL = "http://192.168.59.25/appveterinaria/controllers/mascotas.php";
+    final String urlImagen = "http://192.168.59.25/appveterinaria/imagenes/";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,6 +74,9 @@ public class DetalleMascota extends AppCompatActivity {
                     tvRaza.setText(response.getString("nombreRaza"));
                     tvColor.setText(response.getString("color"));
                     tvGenero.setText(response.getString("genero"));
+
+                    
+
                     fotografia = response.getString("fotografia");
                     obtenerImagen(fotografia);
 
