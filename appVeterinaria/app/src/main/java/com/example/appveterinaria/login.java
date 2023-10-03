@@ -34,7 +34,7 @@ public class login extends AppCompatActivity {
     Button btAcceder, btRegistrase;
     String dni, clave;
     int idCliente;
-    final String URL = "http://192.168.59.25/appveterinaria/controllers/clientes.php";
+    String nombrecompleto;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,7 +61,7 @@ public class login extends AppCompatActivity {
         dni = etdni.getText().toString().trim();
         clave = etClave.getText().toString().trim();
 
-        Uri.Builder urlnueva = Uri.parse(URL).buildUpon();
+        Uri.Builder urlnueva = Uri.parse(Direccion.URLClientes).buildUpon();
         urlnueva.appendQueryParameter("operacion", "inicioSesion");
         urlnueva.appendQueryParameter("dni", dni);
         urlnueva.appendQueryParameter("claveAcceso", clave);
@@ -77,7 +77,10 @@ public class login extends AppCompatActivity {
                         if (response.getBoolean("sesion")) {
                             Toast.makeText(getApplicationContext(), "Iniciando sesión...", Toast.LENGTH_SHORT).show();
                             idCliente = response.getInt("idcliente");
-                            abrirActivityPrincipal(idCliente);
+                            nombrecompleto = response.getString("nombre") + ", " + response.getString("apellidos");
+
+                            Log.d("nombre", nombrecompleto);
+                            abrirActivityPrincipal(idCliente, nombrecompleto);
                         } else {
                             Toast.makeText(getApplicationContext(), response.getString("mensaje"), Toast.LENGTH_SHORT).show();
                             Log.e("Inicio de sesión", response.getString("mensaje"));
@@ -100,10 +103,12 @@ public class login extends AppCompatActivity {
         Volley.newRequestQueue(this).add(jsonObjectRequest);
     }
 
-    private void abrirActivityPrincipal(int idCliente){
+    private void abrirActivityPrincipal(int idCliente, String nombrecompleto){
         Intent intent = new Intent(getApplicationContext(), Listar.class);
         intent.putExtra("idcliente", idCliente);
+        intent.putExtra("nombreCompleto", nombrecompleto);
         startActivity(intent);
+        finishAffinity();
     }
 
     private  void abrirRegistro(){

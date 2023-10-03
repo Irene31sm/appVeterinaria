@@ -76,6 +76,14 @@ BEGIN
 	WHERE dni = _dni;
 END $$
 
+-- ---------------------------------------------------------------------
+DELIMITER $$
+CREATE PROCEDURE spu_listar_clientes()
+BEGIN 
+	SELECT idcliente, apellidos, nombres, dni 
+	FROM clientes;
+END $$
+
 -- -------------------------------------------------------------------------------------------------------------------------
 DELIMITER $$
 CREATE PROCEDURE spu_registrar_cliente

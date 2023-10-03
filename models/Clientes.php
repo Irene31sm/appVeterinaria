@@ -37,4 +37,14 @@ class Cliente extends Conexion{
       die($e->getCode());
     } 
   }
+  public function listarClientes(){
+    try{
+      $consulta =$this->conexion->prepare("CALL spu_listar_clientes()");
+      $consulta->execute();
+      return $consulta->fetchAll(PDO::FETCH_ASSOC);
+    }
+    catch(Exception $e){
+      die($e->getCode());
+    } 
+  }
 }

@@ -50,8 +50,6 @@ public class RegistrarMascota extends AppCompatActivity {
     int idcliente, idRaza;
     String nombreMascota, color, genero;
 
-    final String URL = "http://192.168.59.25/appveterinaria/controllers/razas.php";
-    final String URL2 = "http://192.168.59.25/appveterinaria/controllers/mascotas.php";
 
     private ArrayList<Animales> animales = new ArrayList<>();
     private ArrayList<Razas> razas = new ArrayList<>();
@@ -153,7 +151,7 @@ public class RegistrarMascota extends AppCompatActivity {
             genero = rbHembra.getText().toString();
         }
         Toast.makeText(getApplicationContext(), genero + String.valueOf(idcliente) + String.valueOf(idRaza), Toast.LENGTH_SHORT).show();
-        StringRequest request = new StringRequest(Request.Method.POST, URL2, new Response.Listener<String>() {
+        StringRequest request = new StringRequest(Request.Method.POST, Direccion.URLMascotas, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 //Comunicacion exitosa
@@ -195,7 +193,7 @@ public class RegistrarMascota extends AppCompatActivity {
         requestQueue.add(request);
     }
     private void listarRazas(int idanimal){
-        Uri.Builder NEWURL = Uri.parse(URL).buildUpon();
+        Uri.Builder NEWURL = Uri.parse(Direccion.URLRazas).buildUpon();
         NEWURL.appendQueryParameter("operacion", "filtroRaza");
         NEWURL.appendQueryParameter("idanimal", String.valueOf(idanimal));
         if (razas.isEmpty()) {
@@ -230,7 +228,7 @@ public class RegistrarMascota extends AppCompatActivity {
     }
 
     private void listarAnimales(){
-        Uri.Builder NEWURL = Uri.parse(URL).buildUpon();
+        Uri.Builder NEWURL = Uri.parse(Direccion.URLRazas).buildUpon();
         NEWURL.appendQueryParameter("operacion", "listarAnimal");
         String urlUpdate = NEWURL.build().toString();
         if (animales.isEmpty()) {

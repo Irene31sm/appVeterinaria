@@ -34,8 +34,7 @@ public class DetalleMascota extends AppCompatActivity {
     ImageView ivImgMascota;
     String fotografia;
     int idmascota;
-    final String URL = "http://192.168.59.25/appveterinaria/controllers/mascotas.php";
-    final String urlImagen = "http://192.168.59.25/appveterinaria/imagenes/";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,7 +58,7 @@ public class DetalleMascota extends AppCompatActivity {
 
 
     private void obtenerDatos(int idmascota){
-        Uri.Builder NEWURL = Uri.parse(URL).buildUpon();
+        Uri.Builder NEWURL = Uri.parse(Direccion.URLMascotas).buildUpon();
         NEWURL.appendQueryParameter("operacion", "buscar");
         NEWURL.appendQueryParameter("idmascota", String.valueOf(idmascota));
         String urlnueva = NEWURL.build().toString();
@@ -97,7 +96,7 @@ public class DetalleMascota extends AppCompatActivity {
 
     }
     private void obtenerImagen(String foto){
-        String urlNueva = urlImagen+foto;
+        String urlNueva = Direccion.URLImagenes+foto;
         Toast.makeText(getApplicationContext(),foto, Toast.LENGTH_SHORT).show();
         ImageRequest imageRequest = new ImageRequest(urlNueva, new Response.Listener<Bitmap>() {
             @Override

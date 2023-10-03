@@ -8,7 +8,9 @@ if(isset($_GET['operacion'])){
       $acceso = [
         "sesion" => false,
         "mensaje" => "",
-        "idcliente" => 0
+        "idcliente" => 0,
+        "nombre" => "",
+        "apellidos" => ""
       ];
       $respuesta = $cliente->inicioSesion($_GET['dni']);
       if($respuesta){
@@ -16,6 +18,8 @@ if(isset($_GET['operacion'])){
         if(password_verify($claveIngresada, $respuesta['claveacceso'])){
           $acceso["sesion"] = true;
           $acceso["idcliente"] = $respuesta["idcliente"];
+          $acceso["nombre"] = $respuesta["nombres"];
+          $acceso["apellidos"] = $respuesta["apellidos"];
         }else{
           $acceso["mensaje"] = "La contraseña no es correcta";
         }
@@ -25,14 +29,9 @@ if(isset($_GET['operacion'])){
       echo json_encode($acceso);
       break;
 
-    case 'registrarn':
-      $parametros = [
-        "apellidos" => $_GET['apellidos'],
-        "nombres"   => $_GET['nombres'],
-        "dni"       => $_GET['dni'],
-        "claveAcceso" => password_hash($_GET['claveAcceso'],PASSWORD_BCRYPT)
-      ];
-      $cliente->registrar($parametros);
+    case 'listarClientes':
+      $datos = $cliente->listarClientes();
+      echo json_encode($datos);
       break;
   }
 }

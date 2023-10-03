@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -30,13 +31,16 @@ import java.util.List;
 public class Listar extends AppCompatActivity {
 
     ListView lvMascotas;
-    Button btRegistrarMascota;
+
+    TextView tvNombreCompleto;
+    Button btRegistrarMascota,btnCerrarSesion;
 
     private List<String> datalist = new ArrayList<>();
     private List<Integer> dataID = new ArrayList<>();
     int idcliente;
+    String nombreCompleto;
     private CustomAdapter adapter;
-    final String URL = "http://192.168.59.25/appveterinaria/controllers/mascotas.php";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,8 +51,11 @@ public class Listar extends AppCompatActivity {
         Bundle parametros = this.getIntent().getExtras();
         if(parametros != null){
             idcliente = parametros.getInt("idcliente");
+            nombreCompleto = "Bienvenid@: " + parametros.getString("nombreCompleto");
             obtenerDatos(idcliente);
         }
+
+        tvNombreCompleto.setText(nombreCompleto);
         lvMascotas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
@@ -61,6 +68,19 @@ public class Listar extends AppCompatActivity {
                 abrirActivity(idcliente);
             }
         });
+
+        btnCerrarSesion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cerrarSesion();
+            }
+        });
+    }
+    private void cerrarSesion(){
+        Intent intent = new Intent(getApplicationContext(), login.class);
+        startActivity(intent);
+
+        finishAffinity();
     }
     private void abrirDetalle(int idmascota){
 
@@ -74,7 +94,7 @@ public class Listar extends AppCompatActivity {
         adapter = new CustomAdapter(this, datalist);
         lvMascotas.setAdapter(adapter);
 
-        Uri.Builder NEWURL = Uri.parse(URL).buildUpon();
+        Uri.Builder NEWURL = Uri.parse(Direccion.URLMascotas).buildUpon();
         NEWURL.appendQueryParameter("operacion", "listar");
         NEWURL.appendQueryParameter("idcliente", String.valueOf(idcliente));
         String urlUpdate = NEWURL.build().toString();
@@ -113,5 +133,7 @@ public class Listar extends AppCompatActivity {
     private void loadUI(){
         lvMascotas = findViewById(R.id.lvMascotas);
         btRegistrarMascota = findViewById(R.id.btRegistrarMascota);
+        tvNombreCompleto = findViewById(R.id.tvNombreCompleto);
+        btnCerrarSesion = findViewById(R.id.btnCerrarSesion);
     }
 }

@@ -30,7 +30,7 @@ public class Registrar extends AppCompatActivity {
     Button btRegistrar;
     String apellidos, nombres, dni, clave;
     boolean inicioSesion = false;
-    final String URL = "http://192.168.59.25/appveterinaria/controllers/clientes.php";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,17 +92,21 @@ public class Registrar extends AppCompatActivity {
     }
 
     private void registrar(){
-        StringRequest request = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+        StringRequest request = new StringRequest(Request.Method.POST, Direccion.URLClientes, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 if(response.equalsIgnoreCase("")){
-                    Toast.makeText(getApplicationContext(), "Registradi Correctamente, inicie sesion", Toast.LENGTH_SHORT).show();
-                    etApellidos.requestFocus();
+                    Toast.makeText(getApplicationContext(), "Registrado Correctamente, inicie sesion", Toast.LENGTH_SHORT).show();
+
                     inicioSesion = true;
                     if(inicioSesion){
                         Intent intent = new Intent(getApplicationContext(), login.class);
                         startActivity(intent);
+                        finishAffinity();
                     }
+                }else{
+                    Toast.makeText(getApplicationContext(), "Usted ya se encuentra registrado", Toast.LENGTH_SHORT).show();
+                    reset();
                 }
             }
         }, new Response.ErrorListener() {
@@ -127,6 +131,13 @@ public class Registrar extends AppCompatActivity {
         };
         Volley.newRequestQueue(this).add(request);
 
+    }
+    private void reset(){
+        etApellidos.setText("");
+        etNombres.setText("");
+        etDNI.setText("");
+        etClave1.setText("");
+        etApellidos.requestFocus();
     }
     private void loadUI(){
         etApellidos = findViewById(R.id.etApellidos);

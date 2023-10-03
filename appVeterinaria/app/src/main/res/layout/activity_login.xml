@@ -29,6 +29,7 @@
         android:id="@+id/etDNI"
         android:maxLength="8"
         android:hint="N° DNI"
+        android:inputType="number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

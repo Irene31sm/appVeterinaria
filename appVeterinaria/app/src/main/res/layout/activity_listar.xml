@@ -8,24 +8,40 @@
     android:layout_height="match_parent"
     tools:context=".Listar">
 
+    <Button
+        android:id="@+id/btnCerrarSesion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#3F5C51"
+        android:text="Cerrar sesión" />
+
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="match_parent"
+        android:layout_width="372dp"
         android:layout_height="139dp"
         android:visibility="visible"
         app:srcCompat="@drawable/cabezera" />
+
+    <TextView
+        android:id="@+id/tvNombreCompleto"
+        android:textSize="15dp"
+        android:textAlignment="textStart"
+        android:text=""
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
     <TextView
         android:textSize="25dp"
         android:textStyle="bold"
         android:textAlignment="center"
         android:text="Mis Mascotas"
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="459dp">
+        android:layout_height="334dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -39,7 +55,7 @@
             <ListView
                 android:id="@+id/lvMascotas"
                 android:layout_width="match_parent"
-                android:layout_height="417dp" />
+                android:layout_height="393dp" />
 
         </LinearLayout>
 
